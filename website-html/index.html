@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Coder Paddy</title>
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Coder Paddy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Jumbotron with enquiry -->
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="display-4">Website Issue?</h1>
+                <p class="lead">Let Me Fix it!</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.
+                </p>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </div>
+            <div class="col-md-6" id="form_cover">
+                <form method="POST" id="enquiry_form">
+                    <!--
+                        Form Fields ->
+                        name_input
+                        email_input
+                        message_input
+                        subscribe_check_input
+                    -->
+                    <div class="form-group">
+                        <label for="name_input_id" class="h6">Your Name</label>
+                        <input name="name_input" type="text" class="form-control form-control-sm" id="name_input_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_input_id" class="h6">Email address</label>
+                        <input name="email_input" type="email" class="form-control form-control-sm" id="email_input_id">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject_input_id" class="h6">Your Name</label>
+                        <input name="subject_input" type="text" class="form-control form-control-sm" id="name_input_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="message_input_id" class="h6">Your Message</label>
+                        <textarea name="message_input" rows="2" class="form-control form-control-sm"
+                            id="message_input_id">
+                            </textarea>
+                    </div>
+                    <div class="form-group form-check">
+                        <input name="subscribe_check_input" type="checkbox" class="form-check-input"
+                            id="subscribe_check_input_id">
+                        <label class="form-check-label h6" for="subscribe_check_input_id">Subscribe to the CoderPaddy
+                            newsletter?</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <p id="result"></p>
+
+    <!-- portfolio -->
+    <!-- contact -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Attach a submit handler to the form
+        $("#enquiry_form").submit(function (event) {
+
+            // Stop form from submitting normally
+            event.preventDefault();
+
+            // Get some values from elements on the page:
+            var $form = $(this),
+                name = $form.find("input[name='name_input']").val(),
+                email = $form.find("input[name='email_input']").val(),
+                message = $form.find("textarea[name='message_input']").val(),
+                subscribe_opt = $form.find("[name='subscribe_check_input']").val(),
+                url = "https://coderpaddy.com";
+
+            let data = { name: name, email: email, message: message, subscribe_opt: subscribe_opt }
+            console.log(data["name"]);
+            // Send the data using post
+            //var posting = $.post(url, data);
+            if (data["subscribe_opt"] == "on") {
+            // block of code to be executed if the condition is true
+            var newsletter_string = "you may recieve emails from us, from time to time. These will always be sent from an official https://coderpaddy.com email address."
+            } else {
+            // block of code to be executed if the condition is false
+            var newsletter_string = "you will not recieve any further emails from https://coderpaddy.com"
+            }
+            var text_replace_message = `
+            <div class="row">
+        <p>Hey There ${data["name"]}!<br></p>
+        <p>We have recieved your message: <br>
+            <quote>${data["message"]}</quote>
+        </p>
+        <p>We have also sent an email to ${data["email"]} just to confirm this aswell</p>
+        <p>As your newsletter setting was set to ${data["subscribe_opt"]}, `
+            + newsletter_string
+            + `</p>
+    </div>
+            `
+            $("#form_cover").html(text_replace_message);
+            // Put the results in a div
+            //posting.done(function (data) {
+            //    var content = $(data).find("#content");
+            //    $("#result").empty().append(content);
+            //});
+        });
+    </script>
+
+</body>
+
+</html>
